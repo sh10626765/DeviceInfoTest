@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">DeviceInfoTest</string>
+    <string name="start_test">Start Test</string>
+    <string name="reset_test">Reset</string>
+    <string name="show_full_cpu_info">Full CPU Info</string>
+    <string name="show_full_mem_info">Full RAM Info</string>
+    <string name="brand">Brand:</string>
+    <string name="manufacturer">Manufacturer:</string>
+    <string name="model">Model:</string>
+    <string name="device">Device:</string>
+    <string name="board">Board:</string>
+    <string name="hardware">Hardware:</string>
+    <string name="android_version">Android version:</string>
+    <string name="display">Display:</string>
+    <string name="system">System:</string>
+    <string name="cpu_info">CPU:</string>
+    <string name="ram">RAM:</string>
+    <string name="rom">ROM:</string>
+</resources>
