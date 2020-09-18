@@ -16,4 +16,8 @@
     <string name="cpu_info">CPU:</string>
     <string name="ram">RAM:</string>
     <string name="rom">ROM:</string>
+    <string name="product">Product:</string>
+    <string name="h265_encode">H265 Encode:</string>
+    <string name="h265_decode">H265 Decode:</string>
+    <string name="network_type">Network Type:</string>
 </resources>

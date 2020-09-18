@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        sign0 {
+            storeFile file('C:\\Users\\sh106\\AndroidStudioProjects\\APKSignKey.jks')
+            storePassword '2@leevants'
+            keyAlias 'key0'
+            keyPassword '2@leevants'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
 
@@ -14,12 +22,23 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    android.applicationVariants.all { variant->
+        variant.outputs.all {
+            outputFileName = "DeviceInfoTest_v${defaultConfig.versionName}_${buildType.name}_${releaseTime()}.apk"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.sign0
         }
     }
+}
+
+static def releaseTime() {
+    return new Date().format("yyMMdd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {

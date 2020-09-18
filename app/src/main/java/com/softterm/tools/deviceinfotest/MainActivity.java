@@ -6,6 +6,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecList;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,10 +22,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView brand = findViewById(R.id.brand),
                 manufacturer = findViewById(R.id.manufacturer),
+                product = findViewById(R.id.product),
                 model = findViewById(R.id.model),
                 device = findViewById(R.id.device),
                 board = findViewById(R.id.board),
@@ -43,10 +53,14 @@ public class MainActivity extends AppCompatActivity {
                 ram = findViewById(R.id.ram),
                 rom = findViewById(R.id.rom),
                 androidVersion = findViewById(R.id.android_version),
-                display = findViewById(R.id.display);
+                display = findViewById(R.id.display),
+                h265Encode = findViewById(R.id.h265_encode),
+                h265Decode = findViewById(R.id.h265_decode),
+                networkType = findViewById(R.id.network_type);
 
         final TextView brandText = findViewById(R.id.text_brand),
                 manufacturerText = findViewById(R.id.text_manufacturer),
+                productText = findViewById(R.id.text_product),
                 modelText = findViewById(R.id.text_model),
                 deviceText = findViewById(R.id.text_device),
                 boardText = findViewById(R.id.text_board),
@@ -55,21 +69,12 @@ public class MainActivity extends AppCompatActivity {
                 ramText = findViewById(R.id.text_ram),
                 romText = findViewById(R.id.text_rom),
                 androidVersionText = findViewById(R.id.text_android_version),
-                displayText = findViewById(R.id.text_display);
+                displayText = findViewById(R.id.text_display),
+                h265EncodeText = findViewById(R.id.text_h265_encode),
+                h265DecodeText = findViewById(R.id.text_h265_decode),
+                networkTypeText = findViewById(R.id.text_network_type);
 
         final TextView fullInfo = findViewById(R.id.text_detail);
-
-        brand.setVisibility(View.GONE);
-        manufacturer.setVisibility(View.GONE);
-        model.setVisibility(View.GONE);
-        device.setVisibility(View.GONE);
-        board.setVisibility(View.GONE);
-        hardware.setVisibility(View.GONE);
-        cpuInfo.setVisibility(View.GONE);
-        ram.setVisibility(View.GONE);
-        rom.setVisibility(View.GONE);
-        androidVersion.setVisibility(View.GONE);
-        display.setVisibility(View.GONE);
 
         startTestButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 brand.setVisibility(View.VISIBLE);
                 manufacturer.setVisibility(View.VISIBLE);
+                product.setVisibility(View.VISIBLE);
                 model.setVisibility(View.VISIBLE);
                 device.setVisibility(View.VISIBLE);
                 board.setVisibility(View.VISIBLE);
@@ -86,9 +92,13 @@ public class MainActivity extends AppCompatActivity {
                 rom.setVisibility(View.VISIBLE);
                 androidVersion.setVisibility(View.VISIBLE);
                 display.setVisibility(View.VISIBLE);
+                h265Decode.setVisibility(View.VISIBLE);
+                h265Encode.setVisibility(View.VISIBLE);
+                networkType.setVisibility(View.VISIBLE);
 
                 brandText.setVisibility(View.VISIBLE);
                 manufacturerText.setVisibility(View.VISIBLE);
+                productText.setVisibility(View.VISIBLE);
                 modelText.setVisibility(View.VISIBLE);
                 deviceText.setVisibility(View.VISIBLE);
                 boardText.setVisibility(View.VISIBLE);
@@ -98,9 +108,13 @@ public class MainActivity extends AppCompatActivity {
                 romText.setVisibility(View.VISIBLE);
                 androidVersionText.setVisibility(View.VISIBLE);
                 displayText.setVisibility(View.VISIBLE);
+                h265DecodeText.setVisibility(View.VISIBLE);
+                h265EncodeText.setVisibility(View.VISIBLE);
+                networkTypeText.setVisibility(View.VISIBLE);
 
                 brandText.setText(Build.BRAND);
                 manufacturerText.setText(Build.MANUFACTURER);
+                productText.setText(Build.PRODUCT);
                 modelText.setText(Build.MODEL);
                 deviceText.setText(Build.DEVICE);
                 boardText.setText(Build.BOARD);
@@ -117,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
 
                 ramText.setText(getTotalMemory());
                 romText.setText(getTotalFlash());
+
+                h265DecodeText.setText(isH265DecodeSupport() + "");
+                h265EncodeText.setText(isH265EncodeSupport() + "");
+                networkTypeText.setText(getNetworkType() + "");
             }
         });
 
@@ -139,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 brand.setVisibility(View.GONE);
                 manufacturer.setVisibility(View.GONE);
+                product.setVisibility(View.GONE);
                 model.setVisibility(View.GONE);
                 device.setVisibility(View.GONE);
                 board.setVisibility(View.GONE);
@@ -148,9 +167,12 @@ public class MainActivity extends AppCompatActivity {
                 rom.setVisibility(View.GONE);
                 androidVersion.setVisibility(View.GONE);
                 display.setVisibility(View.GONE);
+                h265Decode.setVisibility(View.GONE);
+                h265Encode.setVisibility(View.GONE);
 
                 brandText.setVisibility(View.GONE);
                 manufacturerText.setVisibility(View.GONE);
+                productText.setVisibility(View.GONE);
                 modelText.setVisibility(View.GONE);
                 deviceText.setVisibility(View.GONE);
                 boardText.setVisibility(View.GONE);
@@ -160,6 +182,10 @@ public class MainActivity extends AppCompatActivity {
                 ramText.setVisibility(View.GONE);
                 romText.setVisibility(View.GONE);
                 displayText.setVisibility(View.GONE);
+                h265EncodeText.setVisibility(View.GONE);
+                h265DecodeText.setVisibility(View.GONE);
+                networkType.setVisibility(View.GONE);
+                networkTypeText.setVisibility(View.GONE);
 
                 fullInfo.setText("");
             }
@@ -225,7 +251,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getTotalFlash() {
-        StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
-        return Formatter.formatFileSize(getBaseContext(), statFs.getTotalBytes());
+        StatFs statRootFs = new StatFs(Environment.getRootDirectory().getPath()),
+                statDataFs = new StatFs(Environment.getDataDirectory().getPath());
+        return Formatter.formatFileSize(getBaseContext(), statDataFs.getTotalBytes() + statRootFs.getTotalBytes());
+    }
+
+    public boolean isH265EncodeSupport() {
+        int count = MediaCodecList.getCodecCount();
+        for (int i = 0; i < count; i++) {
+            MediaCodecInfo info = MediaCodecList.getCodecInfoAt(i);
+            String name = info.getName();
+            Log.d("MediaCodecInfo-name:", name);
+            boolean b = info.isEncoder();
+            if (b && name.contains("hevc")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isH265DecodeSupport() {
+        int count = MediaCodecList.getCodecCount();
+        for (int i = 0; i < count; i++) {
+            MediaCodecInfo info = MediaCodecList.getCodecInfoAt(i);
+            String name = info.getName();
+            Log.d("MediaCodecInfo-name:", name);
+            if (name.contains("decoder") && name.contains("hevc")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getNetworkType() {
+        return NetworkState.getNetWorkConnectionType(getBaseContext());
     }
 }

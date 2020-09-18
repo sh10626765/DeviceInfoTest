@@ -66,117 +66,150 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/brand" />
+            android:text="@string/brand"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_brand"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/manufacturer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/manufacturer" />
+            android:text="@string/manufacturer"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_manufacturer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/product"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:text="@string/product"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_product"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/model"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/model" />
+            android:text="@string/model"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_model"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/device"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/device" />
+            android:text="@string/device"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_device"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/board"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/board" />
+            android:text="@string/board"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_board"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/hardware"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/hardware" />
+            android:text="@string/hardware"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_hardware"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/cpu_info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/cpu_info" />
+            android:text="@string/cpu_info"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_cpu_info"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/ram"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/ram" />
+            android:text="@string/ram"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_ram"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/rom"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/rom" />
+            android:text="@string/rom"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_rom"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
 
         <TextView
@@ -184,26 +217,75 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/android_version" />
+            android:text="@string/android_version"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_android_version"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/display"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="fill"
-            android:text="@string/display" />
+            android:text="@string/display"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_display"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="fill" />
+            android:layout_gravity="fill"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/h265_encode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:text="@string/h265_encode"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_h265_encode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/h265_decode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:text="@string/h265_decode"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_h265_decode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/network_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:text="@string/network_type"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text_network_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            android:visibility="gone" />
 
     </GridLayout>
 
